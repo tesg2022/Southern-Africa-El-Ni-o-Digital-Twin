@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Earth observation-driven digital twin framework for El Niño climate, water, agriculture and groundwater impacts in Southern Africa.">
+<title>Southern Africa El Niño Digital Twin</title>
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.9.0/dist/maplibre-gl.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4"></script>
+<script src="https://unpkg.com/maplibre-gl@5.9.0/dist/maplibre-gl.js"></script>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body><div class="app">
+<aside>
+<div class="brand">SOUTHERN AFRICA<br><span>EL NIÑO DIGITAL TWIN</span></div>
+<div class="sub">Earth observation, AI and hydrological intelligence for climate and water-security decisions.</div>
+<nav>
+<button class="active" onclick="showSection('overview',this)">◉ Overview</button>
+<button onclick="showSection('data',this)">▦ EO Data Hub</button>
+<button onclick="showSection('climate',this)">☼ Climate & Drought</button>
+<button onclick="showSection('agriculture',this)">♧ Agriculture & Ecosystems</button>
+<button onclick="showSection('water',this)">≈ Water Security</button>
+<button onclick="showSection('groundwater',this)">◇ Groundwater</button>
+<button onclick="showSection('twin',this)">◎ Digital Twin Engine</button>
+<button onclick="showSection('architecture',this)">⌘ Architecture</button>
+<button onclick="showSection('validation',this)">✓ Validation</button>
+</nav>
+<div class="sidebox"><span class="dot"></span><b>Research prototype</b><p class="muted">Illustrative interface. Live satellite feeds and operational model services are not yet connected.</p></div>
+</aside>
+<main>
+<div class="top"><div><div class="eyebrow">Earth observation-driven climate intelligence</div><div class="title">Southern Africa El Niño Digital Twin</div><div class="subtitle">An integrated framework for monitoring and predicting El Niño impacts on climate, water security, agricultural productivity, ecosystems and groundwater recharge across Southern Africa.</div></div><div class="updated">PLATFORM STATUS<br><b>Research prototype</b><br>● Data connection pending</div></div>
+<div class="banner"><div><b>From Earth observation to anticipatory decisions</b><br><span class="muted">Observe → Fuse data → Model → Predict → Simulate → Support decisions</span></div><span class="badge">DIGITAL TWIN FRAMEWORK · PROTOTYPE</span></div>
+
+<section id="overview">
+<div class="grid">
+<div class="card kpi"><div class="label">EO data families</div><div class="value">7</div><div class="muted">Proposed integrations</div></div>
+<div class="card kpi"><div class="label">Climate indicators</div><div class="value">12+</div><div class="muted">To operationalize</div></div>
+<div class="card kpi"><div class="label">Model components</div><div class="value">4</div><div class="muted">Process + AI + scenarios</div></div>
+<div class="card kpi"><div class="label">Spatial focus</div><div class="value">Regional</div><div class="muted">Southern Africa</div></div>
+<div class="card kpi"><div class="label">Agriculture</div><div class="value">Planned</div><div class="muted">Exposure assessment</div></div>
+<div class="card kpi"><div class="label">Recharge</div><div class="value">Planned</div><div class="muted">Vulnerability + validation</div></div>
+</div>
+<div class="section two">
+<div class="card"><h2>Regional digital twin map</h2><div class="layers">
+<button class="active" onclick="setLayer('domain',this)">Study domain</button><button onclick="setLayer('rain',this)">Rainfall</button><button onclick="setLayer('heat',this)">Temperature</button><button onclick="setLayer('soil',this)">Soil moisture</button><button onclick="setLayer('crop',this)">Cropland</button><button onclick="setLayer('veg',this)">Vegetation</button><button onclick="setLayer('gw',this)">Recharge</button>
+</div><div id="map"></div><p class="muted">OpenFreeMap basemap. The coloured polygon is a schematic regional extent, not an observed risk layer. Connect authenticated Earth Engine/API outputs for actual thematic maps.</p></div>
+<div class="card"><h2>Engine implementation status</h2>
+<div class="risk"><div class="riskhead"><span>EO ingestion</span><b>Planned</b></div><div class="bar"><div class="fill" style="width:25%;background:var(--warn)"></div></div></div>
+<div class="risk"><div class="riskhead"><span>Climate processing</span><b>Planned</b></div><div class="bar"><div class="fill" style="width:20%;background:var(--warn)"></div></div></div>
+<div class="risk"><div class="riskhead"><span>Hydrological coupling</span><b>Planned</b></div><div class="bar"><div class="fill" style="width:10%;background:var(--warn)"></div></div></div>
+<div class="risk"><div class="riskhead"><span>AI prediction and validation</span><b>Planned</b></div><div class="bar"><div class="fill" style="width:5%;background:var(--warn)"></div></div></div>
+<div class="risk"><div class="riskhead"><span>Decision-support interface</span><b style="color:var(--teal)">Prototype</b></div><div class="bar"><div class="fill" style="width:55%;background:var(--teal)"></div></div></div>
+<p class="muted">Progress indicators describe proposed implementation, not measured system performance.</p></div>
+</div>
+<div class="section two">
+<div class="card"><h2>Climate signals</h2><div class="chartbox"><canvas id="climateChart"></canvas></div><p class="muted">Illustrative sample series only; replace with quality-controlled observations and forecasts.</p></div>
+<div class="card"><h2>Water-balance components</h2><div class="chartbox"><canvas id="waterChart"></canvas></div><p class="muted">Conceptual values. P − ET is not a direct groundwater-recharge estimate.</p></div>
+</div>
+</section>
+
+<section id="data" class="section card">
+<h2>1. Multi-source Earth observation data hub</h2><p>Integrate satellite observations, climate reanalysis, ENSO indices, hydrological simulations and in-situ observations with consistent spatial grids, temporal frequency, metadata and quality flags.</p>
+<table><thead><tr><th>Theme</th><th>Datasets / sensors</th><th>Primary use</th><th>Limitations to manage</th></tr></thead><tbody>
+<tr><td>ENSO forcing</td><td>NOAA Niño 3.4 / ONI; IOD</td><td>ENSO state and climate-driver context</td><td>Index-specific reporting cadence</td></tr>
+<tr><td>Rainfall</td><td>CHIRPS Daily; GPM IMERG</td><td>Totals, anomalies, dry spells</td><td>Validate satellite estimates with gauges</td></tr>
+<tr><td>Temperature / ET</td><td>ERA5-Land; MODIS LST</td><td>Heat anomalies and evaporative demand</td><td>Reanalysis and retrieval differences</td></tr>
+<tr><td>Soil moisture</td><td>ERA5-Land; SMAP</td><td>Surface and root-zone moisture context</td><td>Depth, scale and retrieval differences</td></tr>
+<tr><td>Vegetation</td><td>MODIS NDVI; Sentinel-2</td><td>Vegetation condition and crop development</td><td>Cloud cover and resolution</td></tr>
+<tr><td>Land cover</td><td>ESA WorldCover</td><td>Cropland, wetland and ecosystem masks</td><td>Map epoch and classification accuracy</td></tr>
+<tr><td>Water storage</td><td>GRACE / GRACE-FO</td><td>Regional total water-storage anomalies</td><td>Coarse footprint; not local groundwater level</td></tr>
+<tr><td>Hydrology</td><td>JULES; streamflow and borehole data</td><td>Soil moisture, subsurface runoff and groundwater context</td><td>Model and observation validation required</td></tr>
+</tbody></table><div class="note">Data governance: each layer should carry source, variable, units, spatial resolution, temporal coverage, processing date, quality flag, licence and version. Do not label a layer “real-time” unless its ingestion schedule is verified.</div>
+</section>
+
+<section id="climate" class="section three">
+<div class="card module"><h2>2. Climate and drought twin</h2><h3>Core indicators</h3><ul><li>Rainfall anomaly and Standardized Precipitation Index (SPI)</li><li>Temperature anomaly and heat indicators</li><li>Consecutive dry days and seasonal onset</li><li>Soil-moisture anomaly</li><li>Evapotranspiration and evaporative demand</li></ul></div>
+<div class="card module"><h2>Climate anomaly formulation</h2><p>Calculate departures from a documented reference climatology:</p><div class="metric"><span class="muted">Absolute anomaly</span><strong>Aₜ = Xₜ − X̄baseline</strong></div><div class="metric"><span class="muted">Standardized anomaly</span><strong>Zₜ = (Xₜ − μ) / σ</strong></div><p class="muted">Use consistent baseline periods and account for seasonality, missing data and sensor changes.</p></div>
+<div class="card module"><h2>3. AI climate prediction</h2><ul><li>XGBoost / LightGBM for tabular predictors</li><li>LSTM / TFT for temporal sequences</li><li>Ensembles for forecast combination</li><li>Climatology and persistence baselines</li></ul><p>Evaluate skill by lead time, season and region. Report uncertainty, not only deterministic forecasts.</p></div>
+</section>
+
+<section id="agriculture" class="section three">
+<div class="card module"><h2>4. Agricultural productivity and exposure</h2><p>Combine cropland masks with rainfall, temperature, soil moisture and vegetation indices.</p><ul><li>NDVI/EVI and crop-condition anomalies</li><li>Planting-season rainfall and dry spells</li><li>Crop-area exposure by country or catchment</li><li>Yield statistics where available</li></ul></div>
+<div class="card module"><h2>Ecosystem exposure</h2><p>Assess vegetation stress and water-related ecosystem vulnerability.</p><ul><li>Wetland and riparian condition</li><li>Vegetation productivity anomalies</li><li>Fire-weather context</li><li>Land-cover and habitat exposure</li></ul></div>
+<div class="card module"><h2>Exposure is not impact</h2><p>Satellite-derived exposure identifies where climate stress overlaps with a land-cover class. Productivity impacts require crop calendars, crop type, management, ground observations and yield data.</p></div>
+</section>
+
+<section id="water" class="section two">
+<div class="card module"><h2>5. Water-security and hydrological twin</h2><p>Represent catchment water balance over a defined spatial and temporal boundary.</p><div class="metric"><span class="muted">Conceptual water balance</span><strong>P − ET = Q + ΔS + ε</strong></div><p>P = precipitation; ET = evapotranspiration; Q = runoff/drainage across the selected boundary; ΔS = change in storage; ε = residual terms and errors.</p><ul><li>Rainfall and ET anomalies</li><li>Surface and subsurface runoff</li><li>Reservoir storage and river-flow observations</li><li>Water demand and supply where available</li></ul></div>
+<div class="card module"><h2>Water-security decision outputs</h2><ul><li>Catchments with persistent rainfall deficits</li><li>Potential inflow and storage pressure</li><li>Areas with declining soil-water availability</li><li>Priority monitoring locations</li><li>Scenario comparison for demand management</li></ul><div class="note">P − ET is a climatic water-availability proxy. It is not equivalent to streamflow, sustainable yield or groundwater recharge.</div></div>
+</section>
+
+<section id="groundwater" class="section two">
+<div class="card module"><h2>6. Groundwater recharge and vulnerability</h2><p>Integrate climate forcing with land-surface and subsurface processes. Use JULES soil-moisture and subsurface-runoff outputs alongside borehole levels, hydrogeology and recharge estimates where available.</p><div class="metric"><span class="muted">Initial vulnerability screening index</span><strong>GRVI = 0.35RS + 0.30SMS + 0.20WS + 0.15VS</strong></div><p class="muted">RS = rainfall stress; SMS = soil-moisture stress; WS = water stress; VS = vegetation stress. Weights are proposed screening assumptions, not universal calibrated coefficients.</p></div>
+<div class="card module"><h2>Validation and safeguards</h2><ul><li>Compare modelled soil moisture and runoff with observations.</li><li>Use borehole hydrographs and aquifer characteristics.</li><li>Distinguish recharge, groundwater storage change and abstraction.</li><li>Test sensitivity to index weights and thresholds.</li><li>Report GRVI as vulnerability screening, not measured recharge.</li></ul><div class="note">GRACE observes total terrestrial water-storage changes at coarse spatial scales; it cannot independently resolve local aquifer recharge. P − ET is not a direct recharge measurement.</div></div>
+</section>
+
+<section id="twin" class="section two">
+<div class="card"><h2>7. Digital Twin scenario explorer</h2><p>Explore hypothetical climate inputs. This demonstration calculates illustrative sensitivity indicators only; it does not execute a calibrated hydrological or AI model.</p>
+<label class="label" for="scenario">Scenario label</label><select id="scenario"><option>Weak El Niño</option><option selected>Moderate El Niño</option><option>Strong El Niño</option><option>Custom climate stress</option></select>
+<label class="label" for="rainSlider">Assumed seasonal rainfall anomaly: <b id="rainValue">−20%</b></label><input id="rainSlider" type="range" min="-50" max="20" value="-20">
+<label class="label" for="tempSlider">Assumed temperature anomaly: <b id="tempValue">+2.0 °C</b></label><input id="tempSlider" type="range" min="0" max="5" value="2" step=".1">
+<label class="label" for="soilSlider">Assumed soil-moisture anomaly: <b id="soilValue">−0.10 m³/m³</b></label><input id="soilSlider" type="range" min="-.25" max=".05" value="-.10" step=".01">
+<button class="control" id="runScenario" style="margin-top:12px">Update illustrative scenario</button></div>
+<div class="card"><h2>Scenario sensitivity summary</h2><p class="muted">Illustrative normalized scores based on selected assumptions—not an operational forecast.</p>
+<div class="risk"><div class="riskhead"><span>Rainfall stress</span><b id="rainScore">40 / 100</b></div><div class="bar"><div id="rainBar" class="fill" style="width:40%;background:var(--blue)"></div></div></div>
+<div class="risk"><div class="riskhead"><span>Heat stress</span><b id="heatScore">40 / 100</b></div><div class="bar"><div id="heatBar" class="fill" style="width:40%;background:var(--warn)"></div></div></div>
+<div class="risk"><div class="riskhead"><span>Soil-moisture stress</span><b id="soilScore">40 / 100</b></div><div class="bar"><div id="soilBar" class="fill" style="width:40%;background:var(--teal)"></div></div></div>
+<div class="metric"><span class="muted">Selected scenario</span><strong id="scenarioOut">Moderate El Niño</strong></div><p class="muted">Production execution should submit inputs to a versioned backend model and return spatial outputs, uncertainty ranges, provenance and saved run metadata.</p></div>
+</section>
+
+<section id="architecture" class="section two">
+<div class="card"><h2>8. Digital Twin Engine architecture</h2><div class="arch">
+<div><b>Earth observation and climate data</b><span>CHIRPS · GPM · Sentinel · MODIS · ERA5-Land · SMAP · GRACE · NOAA · JULES</span></div><div>↓</div>
+<div><b>Ingestion and processing</b><span>Google Earth Engine · Python · Xarray · Rasterio · STAC · quality control</span></div><div>↓</div>
+<div><b>Digital Twin Engine</b><span>Data fusion · hydrological models · AI forecasts · scenario simulation · uncertainty</span></div><div>↓</div>
+<div><b>Spatial data and services</b><span>PostgreSQL/PostGIS · object storage · FastAPI · model registry</span></div><div>↓</div>
+<div><b>Observatory and decision support</b><span>MapLibre · dashboard · alerts · reports · scenario comparison</span></div>
+</div></div>
+<div class="card"><h2>Suggested API services</h2><table><tbody>
+<tr><td><code>/api/v1/enso/current</code></td><td>ENSO state</td></tr><tr><td><code>/api/v1/climate/rainfall</code></td><td>Rainfall anomalies</td></tr><tr><td><code>/api/v1/climate/temperature</code></td><td>Temperature indicators</td></tr><tr><td><code>/api/v1/drought/spi</code></td><td>Drought indices</td></tr><tr><td><code>/api/v1/agriculture/exposure</code></td><td>Crop exposure</td></tr><tr><td><code>/api/v1/water/runoff</code></td><td>Runoff and water balance</td></tr><tr><td><code>/api/v1/groundwater/vulnerability</code></td><td>Recharge vulnerability</td></tr><tr><td><code>/api/v1/digital-twin/scenario</code></td><td>Scenario execution</td></tr>
+</tbody></table><div class="note">Never expose Earth Engine credentials, private API keys or service-account files in public HTML, JavaScript or GitHub repositories. Route privileged processing through a secured backend.</div></div>
+</section>
+
+<section id="validation" class="section three">
+<div class="card module"><h2>9. Model validation</h2><ul><li>Temporal holdout and independent test years</li><li>Spatial holdout across catchments/countries</li><li>Climatology and persistence baselines</li><li>Bias, RMSE, MAE, correlation and skill</li><li>Uncertainty and ensemble spread</li></ul></div>
+<div class="card module"><h2>Reproducibility</h2><ul><li>Versioned datasets and processing scripts</li><li>Documented reference periods and units</li><li>Model configuration and parameter tracking</li><li>Saved scenario inputs and outputs</li><li>Data provenance and quality flags</li></ul></div>
+<div class="card module"><h2>Scientific contributions</h2><ul><li>Multi-source EO database</li><li>Validated climate-hydrology indicators</li><li>AI and process-based model integration</li><li>Agricultural and ecosystem exposure</li><li>Groundwater vulnerability scenarios</li><li>Reproducible adaptation decision support</li></ul></div>
+</section>
+
+<section class="section card"><h2>Implementation roadmap</h2><table><thead><tr><th>Phase</th><th>Activities</th><th>Deliverable</th></tr></thead><tbody>
+<tr><td>1. EO foundation</td><td>Connect datasets, metadata, grids and quality control</td><td>Regional EO database</td></tr><tr><td>2. Hydrological twin</td><td>Integrate JULES, soil moisture, runoff and observations</td><td>Climate–water model</td></tr><tr><td>3. AI and scenarios</td><td>Train, validate and quantify uncertainty</td><td>Predictive scenario engine</td></tr><tr><td>4. Operational observatory</td><td>Secure APIs, WebGIS, reporting and alerts</td><td>Decision-support platform</td></tr>
+</tbody></table></section>
+<div class="footer"><b>Southern Africa El Niño Digital Twin · Research and development prototype.</b><br>
+Framework references: <a href="https://eof.esa.int/dte/" target="_blank" rel="noopener">ESA Digital Twin Earth Programme</a> · <a href="https://destine.ecmwf.int/digital-twins/" target="_blank" rel="noopener">Destination Earth Digital Twins</a> · <a href="https://developers.google.com/earth-engine/datasets/catalog" target="_blank" rel="noopener">Google Earth Engine Data Catalogue</a> · <a href="https://grace.jpl.nasa.gov/" target="_blank" rel="noopener">NASA GRACE</a>.<br>
+Scientific integrity: This HTML is a front-end prototype. It does not connect to live Earth observation data, execute trained AI models or run a calibrated hydrological model. Demonstration and scenario values are illustrative. Production deployment requires authenticated data services, validation, uncertainty reporting and documented provenance.</div>
+</main></div>
+<script src="app.js"></script>
+</body></html>
